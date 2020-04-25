@@ -2,6 +2,9 @@
 
 This service provides statistics on currency exchange rates, duh.
 
+API docs are at `/docs/redoc` (http://localhost:8000/docs/redoc/ if you are
+running on localhost).
+
 ## Installing and running
 
 ### `docker-compose`
