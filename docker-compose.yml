@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      dockerfile: docker/nginx/Dockerfile
+      context: .
+    ports:
+      - "8000:80"
+
+  python:
+    build:
+      dockerfile: docker/python/Dockerfile
+      context: .
+    environment:
+      DB_HOST: db
+      CACHEOPS_REDIS: redis://redis:6379/1
+    restart: unless-stopped
+
+  db:
+    image: postgres:11
+    environment:
+      POSTGRES_USER: exchange_rates
+      POSTGRES_PASSWORD: exchange_rates
+      POSTGRES_DB: exchange_rates
+    restart: unless-stopped
+
+  redis:
+    image: redis:5.0.9
